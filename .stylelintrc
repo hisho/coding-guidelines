@@ -1,0 +1,31 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "extends": [
+    "stylelint-config-recommended-scss",
+    "stylelint-config-recess-order"
+  ],
+  "rules": {
+    "indentation": [2, { "severity": "warning" } ],
+    "no-empty-source": null,
+    "block-no-empty": null,
+    "function-calc-no-invalid": true,
+    "selector-pseudo-class-no-unknown": true,
+    "selector-pseudo-element-no-unknown": true,
+    "selector-type-no-unknown": true,
+    "property-no-unknown": true,
+    "no-descending-specificity": null,
+    "number-leading-zero": never,
+    "selector-max-type": 2,
+    "max-nesting-depth": 4,
+    "value-no-vendor-prefix": true,
+    "declaration-block-trailing-semicolon": "always",
+    "declaration-colon-space-after": always,
+    "block-opening-brace-space-before": always,
+    "block-opening-brace-newline-after": always,
+    "selector-combinator-space-before":always,
+    "selector-combinator-space-after": always
+  },
+  "ignoreFiles": ["src/+scss/foundation/*", "src/+scss/vendor/*"],
+}
