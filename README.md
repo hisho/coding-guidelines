@@ -17,47 +17,47 @@ $ npm run watch
 **CSS設計 - FLOUとSMACSSの独自拡張**
 ```text
 root
-	└ src
-		└ @scss
-				├── @foundation
-				│     ├── _@base.scss
-				│     ├── _@variables.scss
-				│     ├── _animation.scss
-				│     ├── _foundation.scss
-				│     ├── _functions.scss
-				│     ├── _mixins.scss
-				│     └── _reset.scss
-				│
-				├── layout
-				│     ├── _footer.scss
-				│     ├── _header.scss
-				│     └── _sections.scss
-				│
-				├── object
-				│     ├── _breadcrumbs.scss
-				│     ├── _burger.scss
-				│     ├── _buttons.scss
-				│     ├── _heading.scss
-				│     └── _icons.scss
-				│
-				├── page
-				│     └── _hoge.scss
-				│
-				├── roots
-				│     └── _@roots.scss
-				│
-				├── utility
-				│     ├── _@modifier.scss
-				│     ├── _fonts.scss
-				│     ├── _margin.scss
-				│     ├── _padding.scss
-				│     └── _text-align.scss
-				│
-				├── vendor
-				│     ├── _hoge.css.scss
-				│     └── _hoge.scss
-				│
-				└── common.scss
+ └ src
+   └ @scss
+      ├── @foundation
+      │     ├── _@base.scss
+      │     ├── _@variables.scss
+      │     ├── _animation.scss
+      │     ├── _foundation.scss
+      │     ├── _functions.scss
+      │     ├── _mixins.scss
+      │     └── _reset.scss
+      │
+      ├── layout
+      │     ├── _footer.scss
+      │     ├── _header.scss
+      │     └── _sections.scss
+      │
+      ├── object
+      │     ├── _breadcrumbs.scss
+      │     ├── _burger.scss
+      │     ├── _buttons.scss
+      │     ├── _heading.scss
+      │     └── _icons.scss
+      │
+      ├── page
+      │     └── _hoge.scss
+      │
+      ├── roots
+      │     └── _@roots.scss
+      │
+      ├── utility
+      │     ├── _@modifier.scss
+      │     ├── _fonts.scss
+      │     ├── _margin.scss
+      │     ├── _padding.scss
+      │     └── _text-align.scss
+      │
+      ├── vendor
+      │     ├── _hoge.css.scss
+      │     └── _hoge.scss
+      │
+      └── common.scss
 ```
 
 ## 2. CSS命名規則 - MindBEMdingの独自拡張
@@ -77,7 +77,7 @@ NGパターン
 }
 //詳細度は変わらないが、素直にclass名を付けたほうが良い
 [id="header"] {
-	position: fixed;
+ position: fixed;
 }
 ```
 OKパターン
@@ -99,13 +99,13 @@ NGパターン
 <div class="hoge">
   <ul>
     <li>
-	  	<section class="card">
-	   		<img class="card__img" src="img/img.png" alt="">
-				<h2 class="card__title">タイトル</h2>
-				<p class="card__text">テキスト</p>
-				<a class="card__link" href="/hoge/">リンク</a>
-	  	</section>
-		</li>
+      <section class="card">
+        <img class="card__img" src="img/img.png" alt="">
+        <h2 class="card__title">タイトル</h2>
+        <p class="card__text">テキスト</p>
+        <a class="card__link" href="/hoge/">リンク</a>
+      </section>
+    </li>
   </ul>
 <div>
 ```
@@ -128,13 +128,13 @@ OKパターン
 ```html
 <div class="hoge">
   <ul class="hoge__container">
-	  <li class="hoge__item">
-			<section class="card">
-		  	<img class="card__img" src="img/img.png" alt="">
-      	<h2 class="card__title">タイトル</h2>
-		  	<p class="card__text">テキスト</p>
-		  	<a class="card__link" href="/hoge/">リンク</a>
-    	</section>
+    <li class="hoge__item">
+      <section class="card">
+        <img class="card__img" src="img/img.png" alt="">
+        <h2 class="card__title">タイトル</h2>
+        <p class="card__text">テキスト</p>
+        <a class="card__link" href="/hoge/">リンク</a>
+      </section>
     </li>
   </ul>
 <div>
@@ -147,12 +147,12 @@ OKパターン
   max-width: 900px;
   margin: 0 auto;
   &__container {
-		display: flex;
-		flex-wrap: wrap;
-	}
-	&__item {
-		width: 50%;
-	}
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__item {
+    width: 50%;
+  }
 }
 ```
 
