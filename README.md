@@ -136,8 +136,8 @@ z-indexの階層を可視化するため
 ```
 ```scss
 .test {
-	z-index: zindex(key1); //z-index: value1
-	z-index: zindex(key2,value1); //z-index: deepvalue1
+  z-index: zindex(key1); //z-index: value1
+  z-index: zindex(key2,value1); //z-index: deepvalue1
 }
 ```
 ****
@@ -182,12 +182,12 @@ $breakpoints: (
 ```
 ```scss
 .test {
-	@include media(sm) {
-		display: block;
-	}
-	@include media(sm,max) {
-		display: block;
-	}
+  @include media(sm) {
+    display: block;
+  }
+  @include media(sm,max) {
+    display: block;
+  }
 }
 ```
 リザルト
