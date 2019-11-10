@@ -13,15 +13,6 @@ StyleLintPlugin = require('stylelint-webpack-plugin'); // stylelintを使う
   |
  */
 
-mix.sass("src/+scss/style.scss", "docs/css")
-  .options({
-    processCssUrls: false,
-    postCss: [require("autoprefixer")({
-      grid: 'autoplace'
-    }), require("css-mqpacker"), ],
-  })
-  .sourceMaps()
-
 mix.webpackConfig({
   module: {
     rules: [{
@@ -35,6 +26,16 @@ mix.webpackConfig({
     })
   ]
 })
+
+
+mix.sass("src/@scss/common.scss", "docs/css")
+  .options({
+    processCssUrls: false,
+    postCss: [require("autoprefixer")({
+      grid: 'autoplace'
+    }), require("css-mqpacker"), ],
+  })
+  .sourceMaps()
 
 mix.webpackConfig({
   devtool: "inline-source-map"
