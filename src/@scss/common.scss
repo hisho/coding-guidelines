@@ -1,0 +1,20 @@
+/* Pluguins
+==================== */
+@import "vendor/*\.css\.scss";
+
+/* Modules
+==================== */
+@import "@foundation/_foundation";
+@import "@foundation/_@base";
+@import "layout/**";
+@import "vendor/!(*\.css\.scss)";
+@import "object/**";
+@import "page/**";
+@import "roots/**";
+@import "utility/**";
+
+/* Style
+==================== */
+
+/* Overwrites
+==================== */

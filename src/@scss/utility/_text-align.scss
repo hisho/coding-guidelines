@@ -1,0 +1,23 @@
+// .text-left {
+//   text-align: left !important;
+// }
+// .text-right {
+//   text-align: right !important;
+// }
+// .text-center {
+//   text-align: center !important;
+// }
+
+// @each $bp, $breakpoint in $breakpoints {
+//   @include media($bp) {
+//     .text-#{$bp}-left {
+//       text-align: left !important;
+//     }
+//     .text-#{$bp}-right {
+//       text-align: right !important;
+//     }
+//     .text-#{$bp}-center {
+//       text-align: center !important;
+//     }
+//   }
+// }

@@ -1,0 +1,25 @@
+.hidden {
+  visibility: hidden !important;
+}
+
+.none {
+  display: none !important;
+}
+
+.sp-none {
+  @include media(sm,max) {
+    display: none !important;
+  }
+}
+
+.pc-none {
+  @include media(sm) {
+    display: none !important;
+  }
+}
+
+.ie-none {
+  @include iehack {
+    display: none !important;
+  }
+}

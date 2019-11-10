@@ -1,0 +1,171 @@
+* {
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  word-wrap: inherit;
+  border: 0;
+}
+
+*,
+::after,
+::before {
+  //全ての要素のbox-sizingをborder-boxにする。
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  // 10px
+  font-size: 62.5%;
+  line-height: 1;
+  letter-spacing: .15em;
+  //英単語を改行するように変更
+  word-wrap: break-word;
+  //文字詰め
+  font-feature-settings: "palt";
+  //モバイル端末のテキスト自動拡大の対策
+  -webkit-text-size-adjust: 100%;
+  //フォントのアンチエイリアス
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  @include iehack {
+    //IEではメイリオを指定するので、文字が詰まりすぎないように
+    letter-spacing: .05em;
+  }
+}
+
+body {
+  overflow-x: hidden;
+  text-align: left;
+}
+
+// a:link,
+// a:visited {
+//   color: inherit;
+// }
+
+a {
+  text-decoration: none;
+  @include hover {
+    //ホバー時もaタグの色を親要素から継承する。
+    color: inherit;
+  }
+}
+
+a[href^="tel:"] {
+  @media (hover:hover) {
+    pointer-events: none;
+  }
+}
+
+p {
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  //IEのバグ対策
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+ul,ol {
+  //ul,olではlist-styleを表示しない。
+  list-style-type: none;
+}
+
+main,
+aside,
+footer,
+figure,
+figcaption,
+article,
+section {
+  //IE対策
+  display: block;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  //16px以下だとスマホで拡大されるので拡大されないように
+  font-size: 16px;
+}
+
+input {
+  background: transparent;
+  border-radius: 0;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+button,
+select {
+  text-transform: none;
+  border-style: none;
+}
+
+address {
+  font-style: none;
+}
+
+[type=button],
+[type=reset],
+[type=submit],
+button {
+  -webkit-appearance: button;
+}
+
+select {
+  background-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+[disabled] {
+  cursor: default;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+[data-whatinput="mouse"] input:focus,
+[data-whatinput="mouse"] select:focus,
+[data-whatinput="mouse"] textarea:focus,
+[data-whatinput="mouse"] button:focus,
+[data-whatinput="touch"] input:focus,
+[data-whatinput="touch"] select:focus,
+[data-whatinput="touch"] textarea:focus,
+[data-whatinput="touch"] button:focus {
+  //mouseとtouchではoutlineを表示しない
+  outline: none !important;
+}
+
+
+//メディアクエリの順番を先に定義
+@include media(xs) {.a {color: inherit;}}
+@include media(sm) {.a {color: inherit;}}
+@include media(md) {.a {color: inherit;}}
+@include media(lg) {.a {color: inherit;}}
+
+@include media(lg,max) {.a {color: inherit;}}
+@include media(md,max) {.a {color: inherit;}}
+@include media(sm,max) {.a {color: inherit;}}
+@include media(xs,max) {.a {color: inherit;}}

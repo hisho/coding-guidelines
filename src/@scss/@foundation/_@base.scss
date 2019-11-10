@@ -1,0 +1,37 @@
+@import "./reset";
+@import "./_animation.scss";
+
+:root {
+  //フォント
+  --font-mincho: #{$font-mincho};
+  --font-gosick: #{font-gosick};
+  --font-english: #{$font-english};
+  //htmlにブレークポイント表示用
+  --breakpoint-xs: #{px(map-get($breakpoints, xs ))};
+  --breakpoint-sm: #{px(map-get($breakpoints, sm ))};
+  --breakpoint-md: #{px(map-get($breakpoints, md ))};
+  --breakpoint-lg: #{px(map-get($breakpoints, lg ))};
+}
+
+body {
+  font-family: $font-mincho;
+  // windowsのIE11のみメイリオにフォントを変える
+  &.ie.windows {
+    font-family: "メイリオ", Meiryo, sans-serif;
+  }
+  @at-root _:-ms-fullscreen,:root & {
+    font-family: "メイリオ", Meiryo, sans-serif;
+  }
+}
+
+.wrapper {
+  //innerがサイドタッチしないように予めスマホ時の左右padding分設定
+  max-width: px($inner-width + ($wrapper-padding * 2));
+  margin: 0 auto;
+  @if $wrapper-padding > 0 {
+    padding: 0 px($wrapper-padding) 0;
+  }
+  .inner {
+    
+  }
+}

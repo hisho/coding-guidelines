@@ -1,0 +1,78 @@
+//-------------------------------------------------------------
+// INDEX
+// ・色の定義
+// ・z-indexの定義
+// ・ブレークポイントの定義
+// ・フォントの定義
+//-------------------------------------------------------------
+
+
+//色の定義
+//-------------------------------------------------------------
+$colors: (
+  text: (
+    red: red,
+    blue: blue,
+  ),
+  bd: (
+    red: #ff0000,
+    blue: blue,
+  ),
+  bg: (
+    red: red,
+    blue: blue,
+  ),
+  gra: linear-gradient(to bottom, red, green)
+);
+
+
+//z-indexの定義
+//-------------------------------------------------------------
+$zindex: (
+  front: 200,
+  modal: (
+    main: 101,
+  ),
+  main: 1,
+  back: -1
+);
+
+
+
+//ブレークポイントの定義
+//-------------------------------------------------------------
+
+//カンプのインナー横幅
+$inner-width: 1000;
+//スマホ時の左右のpadding
+$wrapper-padding: 15;
+//メディアクエリの変数
+$breakpoints: (
+  xs: 0,
+  sm: 720,
+  md: $inner-width,
+  lg: 1200,
+);
+
+//xs: スマートフォン
+//sm: スマートフォンとタブレットの切り替え
+//md: タブレットと小さいPCの切り替え
+//lg: 小さいPCと大きいPCの切り替え
+
+//フォント
+//-------------------------------------------------------------
+
+// @font-face {
+//   font-family: 'フォント名';
+//   font-style: normal;
+//   font-weight: normal;
+//   src:
+//   local('フォント名前※日本語可'),//localを先に指定する
+//   url('../fonts/○○.woff') format('woff'),
+//   url('../fonts/○○.ttf') format('ttf');
+//   font-display: swap;
+// }
+
+$font-mincho: serif;
+$font-gosick: sans-serif;
+$font-english: Arial;

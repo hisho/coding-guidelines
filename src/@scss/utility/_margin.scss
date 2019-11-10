@@ -1,0 +1,79 @@
+// //上下のマージン
+
+// .mt-auto {
+//   margin-top: auto !important;
+// }
+
+// @for $i from 0 through 18 {
+//   .mt-#{$i} {
+//     margin-top: rem($i,5) !important;
+//   }
+//   .mb-#{$i} {
+//     margin-bottom: rem($i,5) !important;
+//   }
+//   .my-#{$i} {
+//     margin-top: rem($i,5) !important;
+//     margin-bottom: rem($i,5) !important;
+//   }
+// }
+
+// @each $bp, $breakpoint in $breakpoints {
+//   @include media($bp) {
+//     @for $i from 0 through 18 {
+//       .my-#{$bp}-#{$i} {
+//         margin-top: rem($i,5) !important;
+//       }
+//       .mt-#{$bp}-#{$i} {
+//         margin-top: rem($i,5) !important;
+//       }
+//       .mb-#{$bp}-#{$i} {
+//         margin-bottom: rem($i,5) !important;
+//       }
+//     }
+//   }
+// }
+
+// //左右のマージン
+
+// .mx-auto {
+//   margin-right: auto !important;
+//   margin-left: auto !important;
+// }
+
+// .ml-auto {
+//   margin-left: auto !important;
+// }
+
+// .mr-auto {
+//   margin-right: auto !important;
+// }
+
+// @for $i from 0 through 18 {
+//   .mx-#{$i} {
+//     margin-right: rem($i,5) !important;
+//     margin-left: rem($i,5) !important;
+//   }
+//   .ml-#{$i} {
+//     margin-left: rem($i,5) !important;
+//   }
+//   .mr-#{$i} {
+//     margin-right: rem($i,5) !important;
+//   }
+// }
+
+// @each $bp, $breakpoint in $breakpoints {
+//   @include media($bp) {
+//     @for $i from 0 through 18 {
+//       .mx-#{$bp}-#{$i} {
+//         margin-right: rem($i,5) !important;
+//         margin-left: rem($i,5) !important;
+//       }
+//       .ml-#{$bp}-#{$i} {
+//         margin-left: rem($i,5) !important;
+//       }
+//       .mr-#{$bp}-#{$i} {
+//         margin-right: rem($i,5) !important;
+//       }
+//     }
+//   }
+// }

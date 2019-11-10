@@ -1,0 +1,31 @@
+// font-size
+// @for $i from 10 to 26 {
+//   .fz-#{$i} {
+//     font-size: rem($i) !important;
+//   }
+// }
+// @each $bp, $breakpoint in $breakpoints {
+//   @include media($bp) {
+//     @for $i from 10 to 26 {
+//       .fz-#{$bp}-#{$i} {
+//         font-size: rem($i) !important;
+//       }
+//     }
+//   }
+// }
+
+
+// @for $i from 10 to 26 {
+//   .fz-#{$i}px {
+//     font-size: px($i) !important;
+//   }
+// }
+// @each $bp, $breakpoint in $breakpoints {
+//   @include media($bp) {
+//     @for $i from 10 to 26 {
+//       .fz-#{$bp}-#{$i}px {
+//         font-size: px($i) !important;
+//       }
+//     }
+//   }
+// }

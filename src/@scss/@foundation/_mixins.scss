@@ -1,0 +1,195 @@
+//-------------------------------------------------------------
+// INDEX
+// ・IE用のブラウザハック
+// ・ホバーの設定
+// ・テキストホバーの設定
+// ・画像ホバーの設定
+// ・メディアクエリーの設定
+// ・positionのmixin
+// ・flexのmixin
+// ・wrapperからの開放
+// ・疑似要素でpadding-top
+// ・ストライプ
+// ・レスポンシブフォントサイズ
+//-------------------------------------------------------------
+
+
+//IE用のブラウザハック
+//-------------------------------------------------------------
+@mixin iehack {
+  @at-root body.ie.windows & {
+    @content;
+  }
+  //jsを切っているIE11用のフォールバック
+  @at-root _:-ms-fullscreen, :root & {
+    @content;
+  }
+}
+
+//ホバーの設定
+//-------------------------------------------------------------
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+  @include iehack {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+//テキストホバーの設定
+//-------------------------------------------------------------
+@mixin hovertext($opacity: .7, $transition: .5s) {
+  transition: opacity $transition;
+  @include hover {
+    opacity: $opacity;
+  }
+}
+
+//画像ホバーの設定
+//-------------------------------------------------------------
+@mixin hoverimg($gizi:before) {
+  &::#{$gizi} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: transparent;
+    transition: background-color .5s;
+  }
+  @include hover {
+    &::#{$gizi} {
+      background: rgba(#fff,.5);
+    }
+  }
+}
+
+
+//メディアクエリーの設定
+//-------------------------------------------------------------
+@mixin media($breakpoint: 'sm', $key: min) {
+  @if $key == max {
+    @media (#{$key}-width: (px(map-get( $breakpoints, $breakpoint )) - .02px)) {
+      @content;}
+  }
+  @if $key == min {
+    @media (#{$key}-width: px(map-get( $breakpoints, $breakpoint ))) {
+      @content;}
+  }
+}
+
+//positionのmixin
+//-------------------------------------------------------------
+@mixin position($position: xy) {
+  position: absolute;
+  @if $position == xy {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  @if $position == x {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @if $position == y {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+//flexのmixin
+//-------------------------------------------------------------
+@mixin flex($position:xy) {
+  display: flex;
+  @if $position == xy {
+    justify-content: center;
+    align-items: center;
+  }
+  @if $position == x {
+    justify-content: center;
+  }
+  @if $position == y {
+    align-items: center;
+  }
+}
+
+//wrapperからの開放
+//-------------------------------------------------------------
+@mixin overflow($padding: null, ) {
+  $ispadding: $padding !=null;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+
+  @if $padding {
+    padding-left: calc(50vw - 50%);
+    padding-right: calc(50vw - 50%);
+  }
+}
+
+//疑似要素でpadding-top
+//-------------------------------------------------------------
+@mixin pt($yoko: 16, $tate: 9, $gizi: before) {
+  &::#{$gizi} {
+    display: block;
+    padding-top: percentage($tate/$yoko);
+    content: '';
+  }
+}
+
+//ストライプ
+//-------------------------------------------------------------
+@mixin stripe($deg: 0, $color1: rgba(red,.4), $color2: rgba(blue,.4),$size: 50) {
+  $naname: 45, 135, 225, 315, -45, -135, -225, -315;
+  $yoko: 0, 90, 180, 270, 360, -90, -180, -270, -360;
+  @if index($naname, $deg) {
+    background-image: repeating-linear-gradient(
+      ($deg * 1deg),
+      $color1 0,
+      $color1 (percentage(1/4) - .05%),
+      $color2 percentage(1/4),
+      $color2 (percentage(2/4) - .05%),
+      $color1 percentage(2/4),
+      $color1 (percentage(3/4) - .05%),
+      $color2 percentage(3/4),
+      $color2 percentage(4/4)
+    );
+    background-repeat: repeat;
+    background-size: px($size) px($size);
+  }
+  @if index($yoko, $deg) {
+    background-image: repeating-linear-gradient(
+      ($deg * 1deg),
+      $color1 0,
+      $color1 (percentage(1/2) - .05%),
+      $color2 percentage(1/2),
+      $color2 percentage(2/2)
+    );
+    background-repeat: repeat;
+    background-size: px($size) px($size);
+  }
+}
+
+//レスポンシブフォントサイズ
+//-------------------------------------------------------------
+@mixin fz($min-font-size: 14, $max-font-size: 16, $breakpoints: sm) {
+  $max-min-font: $max-font-size - $min-font-size;
+  $min-width: bp($breakpoints);
+  $min-fz: rem($min-font-size);
+  $min-fzpx: px($min-width);
+  $inner-min-width: $inner-width - $min-width;
+  @media (min-width: px($inner-width)) {
+    font-size: rem($max-font-size);
+  }
+  @media (min-width: px($min-width)) and (max-width: px($inner-width - .02)) {
+    font-size: calc(#{$max-min-font} * ((100vw - #{$min-fzpx}) / #{$inner-min-width}) + #{$min-fz});
+  }
+  font-size: rem($min-font-size);
+}

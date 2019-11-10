@@ -1,0 +1,61 @@
+// //上下のパディング
+// @for $i from 0 through 18 {
+//   .pt-#{$i} {
+//     margin-top: rem($i,5) !important;
+//   }
+//   .pb-#{$i} {
+//     margin-bottom: rem($i,5) !important;
+//   }
+//   .py-#{$i} {
+//     margin-top: rem($i,5) !important;
+//     margin-bottom: rem($i,5) !important;
+//   }
+// }
+
+// @each $bp, $breakpoint in $breakpoints {
+//   @include media($bp) {
+//     @for $i from 0 through 18 {
+//       .py-#{$bp}-#{$i} {
+//         margin-top: rem($i,5) !important;
+//       }
+//       .pt-#{$bp}-#{$i} {
+//         margin-top: rem($i,5) !important;
+//       }
+//       .pb-#{$bp}-#{$i} {
+//         margin-bottom: rem($i,5) !important;
+//       }
+//     }
+//   }
+// }
+
+// //左右のパディング
+
+// @for $i from 0 through 18 {
+//   .px-#{$i} {
+//     margin-right: rem($i,5) !important;
+//     margin-left: rem($i,5) !important;
+//   }
+//   .pl-#{$i} {
+//     margin-left: rem($i,5) !important;
+//   }
+//   .pr-#{$i} {
+//     margin-right: rem($i,5) !important;
+//   }
+// }
+
+// @each $bp, $breakpoint in $breakpoints {
+//   @include media($bp) {
+//     @for $i from 0 through 18 {
+//       .px-#{$bp}-#{$i} {
+//         margin-right: rem($i,5) !important;
+//         margin-left: rem($i,5) !important;
+//       }
+//       .pl-#{$bp}-#{$i} {
+//         margin-left: rem($i,5) !important;
+//       }
+//       .pr-#{$bp}-#{$i} {
+//         margin-right: rem($i,5) !important;
+//       }
+//     }
+//   }
+// }
