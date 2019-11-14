@@ -123,11 +123,10 @@
 
 //wrapperからの開放
 //-------------------------------------------------------------
-@mixin overflow($padding: null, ) {
+@mixin overflow($padding: null) {
   $ispadding: $padding !=null;
   margin-right: calc(50% - 50vw);
   margin-left: calc(50% - 50vw);
-
   @if $padding {
     padding-left: calc(50vw - 50%);
     padding-right: calc(50vw - 50%);

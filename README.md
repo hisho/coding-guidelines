@@ -15,6 +15,9 @@ $ npm run watch
 
 ## CSS
 ****
+
+### 0. 初期設定のTODOリスト
+
 ### 1. ディレクトリ構造
 **CSS設計 - FLOUとSMACSSの独自拡張**
 ```text
@@ -68,7 +71,6 @@ root
 * ブラウザデフォルトスタイルを初期化
 * 基本的にコードを追記しない
 #### _@variables.scss
-**INDEX**
 1. 色の定義
 ```scss
 $colors: (
@@ -224,9 +226,391 @@ $font-english: Arial;
   font-family: $font-english; //font-family: Arial;
 }
 ```
-
+***
 #### _functions.scss
+**共通の関数の定義**   
+1. margin関数
+※現在はmargin関数以外の関数を使うことはありません。
+```scss
+/**
+ * font-sizeにlineheightをかけた分の差分を出す関数
+ * @param  {Number} $lineHeight line-heightを入れる
+ * @param  {Number} $fontSize font-sizeを入れる
+ * @return {px} 差分にpxを付けて返す
+ */
+@function margin($lineHeight, $fontSize) {
+  @return px(($fontSize * $lineHeight - $fontSize) / 2);
+}
+```
+呼び出し方    
+```scss
+.test {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  maring-top: 20px - margin(1.6,16); // 20px - 4.8px
+}
+```
+***
 #### _mixins.scss
+**全てのプロジェクトで使う共通のmixinの定義**   
+※プロジェクト中で新規作成するmixinは各ファイルに追記する事    
+1. IE用のブラウザハック    
+`body.ie.windows`の部分はJavaScriptのUserAgentによって付与されます。
+```scss
+@mixin iehack {
+  @at-root body.ie.windows & {
+    @content;
+  }
+  //jsを切っているIE11用のフォールバック
+  @at-root _:-ms-fullscreen, :root & {
+    @content;
+  }
+}
+```
+呼び出し方
+```scss
+.test {
+  @include iehack {
+    display: none;
+  }
+}
+```
+リザルト
+```scss
+body.ie.windows .test {
+  display: none;
+}
+_:-ms-fullscreen, :root .test {
+  display: none;
+}
+```
+***
+2. ホバーの設定    
+メディアクエリレベル4のホバー可能な時のみホバーの体裁を与える    
+IEには効かないのでIEhackを用いてIEには普通にホバーさせる    
+[Can I use@media: hover](https://caniuse.com/#search=%40media%20hover)
+```scss
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+  @include iehack {
+    &:hover {
+      @content;
+    }
+  }
+}
+```
+呼び出し方
+```scss
+.test {
+  transition: background-color .5s;
+  @include hover {
+    background-color: red;
+  }
+}
+```
+リザルト
+```scss
+.test {
+  transition: background-color .5s;
+}
+@media (hover: hover) {
+  .test:hover {
+    background-color: red;
+  }
+}
+body.ie.windows .test:hover {
+  background-color: red;
+}
+_:-ms-fullscreen, :root .test:hover {
+  background-color: red;
+}
+```
+***
+3. テキストホバーの設定   
+テキストをホバーした時の統一設定   
+**初期設定時に変更**
+```scss
+@mixin hovertext($opacity: .7, $transition: .5s) {
+  transition: opacity $transition;
+  @include hover {
+    opacity: $opacity;
+  }
+}
+```
+呼び出し方
+```scss
+.test {
+  @include hovertext;
+  //または引数を指定する
+  @include hovertext(.5,.2s);
+}
+```
+リザルト
+```scss
+.test {
+  transition: opacity .5s;
+}
+@media (hover: hover) {
+  .test:hover {
+    opacity: .7;
+  }
+}
+body.ie.windows .test:hover {
+  opacity: .7;
+}
+_:-ms-fullscreen, :root .test:hover {
+  opacity: .7;
+}
+```
+***
+4. 画像ホバーの設定   
+画像をホバーした時の統一設定   
+**初期設定時に変更**
+```scss
+@mixin hoverimg($gizi:before) {
+  &::#{$gizi} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: transparent;
+    transition: background-color .5s;
+  }
+  @include hover {
+    &::#{$gizi} {
+      background: rgba(#fff,.5);
+    }
+  }
+}
+```
+呼び出し方
+```scss
+.test {
+  @include hoverimg;
+  //beforeが使用されている場合は引数にafterを指定する
+  @include hoverimg(after);
+}
+```
+リザルト
+```scss
+.test::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  background: transparent;
+  transition: background-color .5s;
+}
+@media (hover: hover) {
+  .test::before:hover {
+      background: rgba(255,255,255,.5);
+  }
+}
+body.ie.windows .test::before:hover {
+    background: rgba(255,255,255,.5);
+}
+_:-ms-fullscreen, :root .test::before:hover {
+    background: rgba(255,255,255,.5);
+}
+```
+***
+5. メディアクエリーの設定   
+ブレークポイントの定義を参照    
+***
+6. positionのmixin   
+使用頻度の高いposition: absolute;を楽に出すmixin
+```scss
+@mixin position($position: xy) {
+  position: absolute;
+  @if $position == xy {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  @if $position == x {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @if $position == y {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+```
+呼び出し方
+```scss
+.test {
+  @include position;
+  //引数にxを指定して
+  @include position(x);
+  //引数にyを指定して
+  @include position(y);
+}
+```
+リザルト
+```scss
+.test {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+//引数にxを指定して
+.test {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+//引数にyを指定して
+.test {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+```
+***
+7. flexのmixin  
+使用頻度の高いdisplay: flex;を楽に出すmixin
+```scss
+@mixin flex($position:xy) {
+  display: flex;
+  @if $position == xy {
+    justify-content: center;
+    align-items: center;
+  }
+  @if $position == x {
+    justify-content: center;
+  }
+  @if $position == y {
+    align-items: center;
+  }
+}
+```
+呼び出し方
+```scss
+.test {
+  @include flex;
+  //引数にxを指定して
+  @include flex(x);
+  //引数にyを指定して
+  @include flex(y);
+}
+```
+リザルト
+```scss
+.test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+//引数にxを指定して
+.test {
+  justify-content: center;
+}
+//引数にyを指定して
+.test {
+  align-items: center;
+}
+```
+***
+8. wrapperからの開放   
+親要素のwidthからネガティブマージンを利用し擬似的に横幅を広げるmixin
+```scss
+@mixin overflow($padding: null) {
+  $ispadding: $padding !=null;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  @if $padding {
+    padding-left: calc(50vw - 50%);
+    padding-right: calc(50vw - 50%);
+  }
+}
+```
+呼び出し方
+```scss
+.test {
+  @include overflow;
+  //または引数を指定して
+  @include overflow(true);
+}
+```
+リザルト
+```scss
+.test {
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+}
+//または引数を指定して
+.test {
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+}
+```
+***
+9. 疑似要素でpadding-top   
+疑似要素を消費してアスペクト比を維持するmixin    
+scssの組み込み関数percentageを利用しています。
+```scss
+@mixin pt($yoko: 16, $tate: 9, $gizi: before) {
+  &::#{$gizi} {
+    display: block;
+    padding-top: percentage($tate/$yoko);
+    content: '';
+  }
+}
+```
+呼び出し方
+```scss
+.test {
+  @include pt;
+  //または引数を指定して
+  @include pt(300/500);
+  //または疑似要素を変えて
+  @include pt(300/500,after);
+}
+```
+リザルト
+```scss
+.test::before {
+  display: block;
+  padding-top: 56.25%;
+  content: '';
+}
+//または引数を指定して
+.test::before {
+  display: block;
+  padding-top: 60%;
+  content: '';
+}
+//または疑似要素を変えて
+.test::after {
+  display: block;
+  padding-top: 60%;
+  content: '';
+}
+```
+***
+10. ストライプ   
+ほぼ使わないので省略
+***
+11. レスポンシブフォントサイズ   
+これもほぼ使わないので省略
+***
+
 #### _foundation.scss
 #### _reset.scss
 #### _animation.scss
