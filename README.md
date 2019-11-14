@@ -611,8 +611,98 @@ scssの組み込み関数percentageを利用しています。
 これもほぼ使わないので省略
 ***
 
-#### _foundation.scss
-#### _reset.scss
+#### _foundation.scss   
+上記の3つをまとめたscss   
+```scss
+@import "./@variables";
+@import "./functions";
+@import "./mixins";
+```
+#### _reset.scss   
+全てのスタイルをリセットするscss   
+重要な部分のみ紹介
+```scss
+* {
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  word-wrap: inherit;
+  border: 0;
+}
+*,
+::after,
+::before {
+  //全ての要素のbox-sizingをborder-boxにする。
+  box-sizing: border-box;
+}
+```
+* 全ての`box-sizing`を`border-box`に変更
+* `font`、`letter-spacing`、`word-wrap`は親要素の値を継承する
+```scss
+html {
+  overflow-x: hidden;
+  // 10px
+  font-size: 62.5%;
+  line-height: 1;
+  letter-spacing: .15em;
+  //英単語を改行するように変更
+  word-wrap: break-word;
+  //文字詰め
+  font-feature-settings: "palt";
+  //モバイル端末のテキスト自動拡大の対策
+  -webkit-text-size-adjust: 100%;
+  //フォントのアンチエイリアス
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  @include iehack {
+    //IEではメイリオを指定するので、文字が詰まりすぎないように
+    letter-spacing: .05em;
+  }
+}
+```
+* 横幅がはみ出た要素をカットする為の`overflow-x: hidden`
+* デフォルトのフォントサイズを`62.5%`=`10px`に変更
+* 全ての`line-height`の初期値を`1`に変更
+* `letter-spacing`の初期値を`0.15em`に変更
+* 英字で改行する用に`word-wrap`を`break-word`に変更
+* `font-feature-settings`(文字詰め)を`palt`に変更
+```scss
+a {
+  text-decoration: none;
+  @include hover {
+    //ホバー時もaタグの色を親要素から継承する。
+    color: inherit;
+  }
+}
+```
+* ホバーした時のaタグの色を親要素から継承するように変更   
+※詳細度に注意
+```scss
+a[href^="tel:"] {
+  @media (hover:hover) {
+    pointer-events: none;
+  }
+}
+```
+* ホバーできる要素では電話をかけられないように`pointer-events`を`none`に変更
+```scss
+p {
+  line-height: 1.6;
+}
+```
+* `line-height`の初期値を`1`に設定したが`pタグ`のみ`1.6`に
+```scss
+img {
+  display: block;
+  //IEのバグ対策
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+```
+* `imgタグ`を`inline`要素で使うことがほとんどないので初期値を`block`に変更
+* `IE11`のflexのバグ対策で`width`を`100%`に変更
 #### _animation.scss
 #### _@base.scss
 
