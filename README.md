@@ -79,7 +79,7 @@ $colors: (
   )
 );
 ```
-scssのmapを使って`$colors`の中に`key:value`または`kye:deepkey:deepvalue`を定義する。    
+scssのmapを使って`$colors`の中に`key:value`または`key:deepkey:deepvalue`を定義する。    
 呼び出し方    
 `functions.scss`の`color`関数を呼び出す
 ```scss
@@ -116,7 +116,7 @@ $zindex: (
 );
 ```
 z-indexの階層を可視化するため    
-色の変数と同じくscssのmapを使って`$zindex`の中に`key:value`または`kye:deepkey:deepvalue`を定義する。    
+色の変数と同じくscssのmapを使って`$zindex`の中に`key:value`または`key:deepkey:deepvalue`を定義する。    
 呼び出し方    
 `functions.scss`の`zindex`関数を呼び出す
 ```scss
@@ -159,7 +159,7 @@ $breakpoints: (
 * xs：スマホ
 * sm：スマホとタブレット切り替え
 * md：タブレットとPC切り替え
-* lg：PCとワイドPC切り替え
+* lg：PCとワイドPC切り替え   
 呼び出し方    
 `mixin.scss`の`media`を`@include`する。    
 引数1に`$breakpoints`の`$key`を引数2に`min` or `max`を    
