@@ -641,7 +641,7 @@ NGパターン
 }
 //詳細度は変わらないが、素直にclass名を付けたほうが良い
 [id="header"] {
- position: fixed;
+  position: fixed;
 }
 ```
 OKパターン
@@ -683,7 +683,7 @@ NGパターン
     display: flex;
     flex-wrap: wrap;
     li {
-	  width: 50%;
+      width: 50%;
     }
   }
 }
