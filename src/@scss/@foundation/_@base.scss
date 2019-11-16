@@ -4,7 +4,7 @@
 :root {
   //フォント
   --font-mincho: #{$font-mincho};
-  --font-gosick: #{font-gosick};
+  --font-gosick: #{$font-gosick};
   --font-english: #{$font-english};
   //htmlにブレークポイント表示用
   --breakpoint-xs: #{px(map-get($breakpoints, xs ))};
