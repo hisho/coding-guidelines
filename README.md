@@ -610,7 +610,6 @@ scssの組み込み関数percentageを利用しています。
 11. レスポンシブフォントサイズ   
 これもほぼ使わないので省略
 ***
-
 #### _foundation.scss   
 上記の3つをまとめたscss   
 ```scss
@@ -618,6 +617,7 @@ scssの組み込み関数percentageを利用しています。
 @import "./functions";
 @import "./mixins";
 ```
+****
 #### _reset.scss   
 全てのスタイルをリセットするscss   
 重要な部分のみ紹介
@@ -703,10 +703,72 @@ img {
 ```
 * `imgタグ`を`inline`要素で使うことがほとんどないので初期値を`block`に変更
 * `IE11`のflexのバグ対策で`width`を`100%`に変更
+****
 #### _animation.scss
+@kyeframeの定義    
+`呼び出しはどのファイルからも可能`な為ここ以外に@kyeframe書かず`_animation.scss`に集約する
+****
 #### _@base.scss
-
-
+プロジェクト毎で使うbaseの定義    
+**このファイルは初期設定必須**
+```scss
+@import "./reset";
+@import "./_animation.scss";
+```
+`reset`と`animation`のimport
+```scss
+:root {
+  //フォント
+  --font-mincho: #{$font-mincho};
+  --font-gosick: #{$font-gosick};
+  --font-english: #{$font-english};
+  //htmlにブレークポイント表示用
+  --breakpoint-xs: #{px(map-get($breakpoints, xs ))};
+  --breakpoint-sm: #{px(map-get($breakpoints, sm ))};
+  --breakpoint-md: #{px(map-get($breakpoints, md ))};
+  --breakpoint-lg: #{px(map-get($breakpoints, lg ))};
+}
+```
+```css
+:root {
+  --font-mincho: serif;
+  --font-gosick: font-gosick;
+  --font-english: Arial;
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 720px;
+  --breakpoint-md: 1000px;
+  --breakpoint-lg: 1200px;
+}
+```
+`css variables`を利用し`root`に`font`と`breakpoint`を表示する
+```scss
+body {
+  font-family: $font-mincho;
+  // windowsのIE11のみメイリオにフォントを変える
+  &.ie.windows {
+    font-family: "メイリオ", Meiryo, sans-serif;
+  }
+  @at-root _:-ms-fullscreen,:root & {
+    font-family: "メイリオ", Meiryo, sans-serif;
+  }
+}
+```
+フォントの初期設定
+```scss
+.wrapper {
+  //innerがサイドタッチしないように予めスマホ時の左右padding分設定
+  max-width: px($inner-width + ($wrapper-padding * 2));
+  margin: 0 auto;
+  @if $wrapper-padding > 0 {
+    padding: 0 px($wrapper-padding) 0;
+  }
+  .inner {
+  
+  }
+}
+```
+`.wrapper`と`.inner`の初期設定
+****
 ### 1.3 layout層
 ### 1.4 object層
 ### 1.5 page層
