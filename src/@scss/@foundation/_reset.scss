@@ -19,7 +19,7 @@ html {
   // 10px
   font-size: 62.5%;
   line-height: 1;
-  letter-spacing: .15em;
+  letter-spacing: .05em;
   //英単語を改行するように変更
   word-wrap: break-word;
   //文字詰め
@@ -29,10 +29,6 @@ html {
   //フォントのアンチエイリアス
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  @include iehack {
-    //IEではメイリオを指定するので、文字が詰まりすぎないように
-    letter-spacing: .05em;
-  }
 }
 
 body {

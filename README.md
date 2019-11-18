@@ -645,7 +645,7 @@ html {
   // 10px
   font-size: 62.5%;
   line-height: 1;
-  letter-spacing: .15em;
+  letter-spacing: .05em;
   //英単語を改行するように変更
   word-wrap: break-word;
   //文字詰め
@@ -655,16 +655,12 @@ html {
   //フォントのアンチエイリアス
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  @include iehack {
-    //IEではメイリオを指定するので、文字が詰まりすぎないように
-    letter-spacing: .05em;
-  }
 }
 ```
 * 横幅がはみ出た要素をカットする為の`overflow-x: hidden`
 * デフォルトのフォントサイズを`62.5%`=`10px`に変更
 * 全ての`line-height`の初期値を`1`に変更
-* `letter-spacing`の初期値を`0.15em`に変更
+* `letter-spacing`の初期値を`0.05em`に変更
 * 英字で改行する用に`word-wrap`を`break-word`に変更
 * `font-feature-settings`(文字詰め)を`palt`に変更
 ```scss
