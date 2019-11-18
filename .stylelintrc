@@ -13,10 +13,9 @@
     "function-calc-no-invalid": true,
     "selector-pseudo-class-no-unknown": true,
     "selector-pseudo-element-no-unknown": true,
-    "selector-type-no-unknown": true,
-    "selector-max-id": 0,
-    "color-hex-case": "lower",
-    "declaration-no-important": true,
+    "selector-type-no-unknown": [ true, {
+      ignoreTypes: ["_"]
+    }],
     "property-no-unknown": true,
     "no-descending-specificity": null,
     "number-leading-zero": never,
