@@ -13,9 +13,9 @@
   @return $target * ($size * .1rem);
 }
 
-@function bp($key) {
-  @return map-get($breakpoints, $key);
-}
+// @function bp($key) {
+//   @return map-get($breakpoints, $key);
+// }
 
 @function number($number) {
   @if type-of($number) == 'number' and not unitless($number) {
@@ -47,4 +47,9 @@
 //zindexの関数
 @function zindex($keys...) {
   @return map-deep-get($zindex, $keys...);
+}
+
+//fontの関数
+@function font($keys...) {
+  @return map-deep-get($fonts, $keys...);
 }

@@ -73,6 +73,13 @@ $breakpoints: (
 //   font-display: swap;
 // }
 
-$font-mincho: serif;
-$font-gosick: sans-serif;
-$font-english: Arial;
+$fonts: (
+  ja: (
+    sans: sans-serif,
+    serif: serif,
+  ),
+  en: (
+    sans: sans-serif,
+    serif: serif,
+  )
+);

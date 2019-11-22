@@ -2,19 +2,20 @@
 @import "./_animation.scss";
 
 :root {
-  //フォント
-  --font-mincho: #{$font-mincho};
-  --font-gosick: #{$font-gosick};
-  --font-english: #{$font-english};
   //htmlにブレークポイント表示用
   --breakpoint-xs: #{px(map-get($breakpoints, xs ))};
   --breakpoint-sm: #{px(map-get($breakpoints, sm ))};
   --breakpoint-md: #{px(map-get($breakpoints, md ))};
   --breakpoint-lg: #{px(map-get($breakpoints, lg ))};
+  //フォント
+  --font-ja-sans: #{font(ja,sans)};
+  --font-ja-serif: #{font(ja,serif)};
+  --font-en-sans: #{font(en,sans)};
+  --font-en-serif: #{font(en,serif)};
 }
 
 body {
-  font-family: $font-mincho;
+  font-family: font(ja, sans);
   // windowsのIE11のみメイリオにフォントを変える
   &.ie.windows {
     font-family: "メイリオ", Meiryo, sans-serif;
