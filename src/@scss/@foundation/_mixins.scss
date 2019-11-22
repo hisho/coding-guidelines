@@ -9,8 +9,6 @@
 // ・flexのmixin
 // ・wrapperからの開放
 // ・疑似要素でpadding-top
-// ・ストライプ
-// ・レスポンシブフォントサイズ
 //-------------------------------------------------------------
 
 
@@ -141,54 +139,4 @@
     padding-top: percentage($tate/$yoko);
     content: '';
   }
-}
-
-//ストライプ
-//-------------------------------------------------------------
-@mixin stripe($deg: 0, $color1: rgba(red,.4), $color2: rgba(blue,.4),$size: 50) {
-  $naname: 45, 135, 225, 315, -45, -135, -225, -315;
-  $yoko: 0, 90, 180, 270, 360, -90, -180, -270, -360;
-  @if index($naname, $deg) {
-    background-image: repeating-linear-gradient(
-      ($deg * 1deg),
-      $color1 0,
-      $color1 (percentage(1/4) - .05%),
-      $color2 percentage(1/4),
-      $color2 (percentage(2/4) - .05%),
-      $color1 percentage(2/4),
-      $color1 (percentage(3/4) - .05%),
-      $color2 percentage(3/4),
-      $color2 percentage(4/4)
-    );
-    background-repeat: repeat;
-    background-size: px($size) px($size);
-  }
-  @if index($yoko, $deg) {
-    background-image: repeating-linear-gradient(
-      ($deg * 1deg),
-      $color1 0,
-      $color1 (percentage(1/2) - .05%),
-      $color2 percentage(1/2),
-      $color2 percentage(2/2)
-    );
-    background-repeat: repeat;
-    background-size: px($size) px($size);
-  }
-}
-
-//レスポンシブフォントサイズ
-//-------------------------------------------------------------
-@mixin fz($min-font-size: 14, $max-font-size: 16, $breakpoints: sm) {
-  $max-min-font: $max-font-size - $min-font-size;
-  $min-width: bp($breakpoints);
-  $min-fz: rem($min-font-size);
-  $min-fzpx: px($min-width);
-  $inner-min-width: $inner-width - $min-width;
-  @media (min-width: px($inner-width)) {
-    font-size: rem($max-font-size);
-  }
-  @media (min-width: px($min-width)) and (max-width: px($inner-width - .02)) {
-    font-size: calc(#{$max-min-font} * ((100vw - #{$min-fzpx}) / #{$inner-min-width}) + #{$min-fz});
-  }
-  font-size: rem($min-font-size);
 }
