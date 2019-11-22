@@ -207,20 +207,42 @@ $breakpoints: (
 ****
 4. フォントの定義
 ```scss
-$font-mincho: serif;
-$font-gosick: sans-serif;
-$font-english: Arial;
+$fonts: (
+  ja: (
+    sans: sans-serif,
+    serif: serif,
+  ),
+  en: (
+    sans: sans-serif,
+    serif: serif,
+  )
+);
 ```
-明朝体、ゴシック体、英自体の変数で管理    
-※map化も検討    
-呼び出し方
+色、z-indexを同じくscssのmapを使って`$fonts`の中に`key:value`を定義する。    
+呼び出し方   
+`functions.scss`の`font`関数を呼び出す
+```scss
+//一つネストが深いmapをgetする関数
+@function map-deep-get($map, $keys...) {
+  $value: $map;
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+  @return $value;
+}
 
+//fontの関数
+@function font($keys...) {
+  @return map-deep-get($fonts, $keys...);
+}
+```
 
 ```scss
 .test {
-  font-family: $font-mincho; //font-family: serif;
-  font-family: $font-gosick; //font-family: sans-serif;
-  font-family: $font-english; //font-family: Arial;
+  font-family: font(ja, sans);  //日本語sans-serif
+  font-family: font(ja, serif); //日本語serif
+  font-family: font(en, sans);  //英語sans-serif
+  font-family: font(en, serif); //英語serif
 }
 ```
 ***
@@ -711,26 +733,29 @@ img {
 `reset`と`animation`のimport
 ```scss
 :root {
-  //フォント
-  --font-mincho: #{$font-mincho};
-  --font-gosick: #{$font-gosick};
-  --font-english: #{$font-english};
   //htmlにブレークポイント表示用
   --breakpoint-xs: #{px(map-get($breakpoints, xs ))};
   --breakpoint-sm: #{px(map-get($breakpoints, sm ))};
   --breakpoint-md: #{px(map-get($breakpoints, md ))};
   --breakpoint-lg: #{px(map-get($breakpoints, lg ))};
+  //フォント
+  --font-ja-sans: #{font(ja,sans)};
+  --font-ja-serif: #{font(ja,serif)};
+  --font-en-sans: #{font(en,sans)};
+  --font-en-serif: #{font(en,serif)};
 }
 ```
+リザルト
 ```css
 :root {
-  --font-mincho: serif;
-  --font-gosick: font-gosick;
-  --font-english: Arial;
   --breakpoint-xs: 0px;
   --breakpoint-sm: 720px;
   --breakpoint-md: 1000px;
   --breakpoint-lg: 1200px;
+  --font-ja-sans: sans-serif;
+  --font-ja-serif: serif;
+  --font-en-sans: sans-serif;
+  --font-en-serif: serif;
 }
 ```
 `css variables`を利用し`root`に`font`と`breakpoint`を表示する
