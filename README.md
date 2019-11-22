@@ -48,9 +48,6 @@ root
       ├── page
       │     └── _hoge.scss
       │
-      ├── roots
-      │     └── _@roots.scss
-      │
       ├── utility
       │     ├── _@modifier.scss
       │     ├── _fonts.scss
@@ -768,7 +765,6 @@ body {
 ### 1.3 layout層
 ### 1.4 object層
 ### 1.5 page層
-### 1.6 roots層
 ### 1.6 utility層
 ### 1.6 vendor層
 
