@@ -143,17 +143,22 @@ z-indexの階層を可視化するため
 ****
 3. ブレークポイントの定義   
 ```scss
-//カンプのインナー横幅
-$inner-width: 1000;
-//スマホ時の左右のpadding
-$wrapper-padding: 15;
 //メディアクエリの変数
 $breakpoints: (
   xs: 0,
   sm: 720,
-  md: $inner-width,
-  lg: 1200,
+  md: 1000,
+  lg: 1200
 );
+//xs: スマートフォン
+//sm: スマートフォンとタブレットの切り替え
+//md: タブレットと小さいPCの切り替え
+//lg: 小さいPCと大きいPCの切り替え
+
+//カンプのインナー横幅
+$inner-width: map-get($breakpoints, md );
+//スマホ時の左右のpadding
+$wrapper-padding: 15;
 ```
 色、z-indexを同じくscssのmapを使って`$breakpoints`の中に`key:value`を定義する。
 * xs：スマホ
