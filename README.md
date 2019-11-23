@@ -43,8 +43,8 @@ root
       │
       ├── object
       │     ├── __example.scss
-      │     ├── _buttons.scss
-      │     └── _heading.scss
+      │     ├── _@button.scss
+      │     └── _@heading.scss
       │
       ├── page
       │     └── _hoge.scss
@@ -805,10 +805,25 @@ body {
 ハンバーガーアイコンのレイアウトの定義
 ***
 ### 1.4 object層
+* 小さい枠の共通パーツ
+* 基本的にバリエーションの多い共通パーツの定義
+* 今後増えそうなやつもObject化して良い
+* メインで書いていく場所でいくらでも増やして良い
+#### __example.scss
+例が書いてあるファイル
+***
+#### _@button.scss
+共通のボタンのレイアウトの定義
+***
+#### _@headings.scss
+共通の見出しのレイアウトの定義
+***
 ### 1.5 page層
+***
 ### 1.6 utility層
+****
 ### 1.6 vendor層
-
+***
 ### 2. CSS命名規則 - MindBEMdingの独自拡張
 
 #### 2.1. IDセレクタの使用は禁止。
