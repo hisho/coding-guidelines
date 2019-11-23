@@ -42,11 +42,9 @@ root
       │     └── _hamburger.scss
       │
       ├── object
-      │     ├── _breadcrumbs.scss
-      │     ├── _burger.scss
+      │     ├── __example.scss
       │     ├── _buttons.scss
-      │     ├── _heading.scss
-      │     └── _icons.scss
+      │     └── _heading.scss
       │
       ├── page
       │     └── _hoge.scss
