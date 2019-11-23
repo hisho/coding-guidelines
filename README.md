@@ -824,6 +824,16 @@ body {
 共通の見出しのレイアウトの定義
 ***
 ### 1.5 page層
+* ページ固有のスタイルを書く
+* 基本的に使い回しをしない
+* 大規模ページの場合はcommonにマージさせず、独立させる
+#### _hoge.scss
+小規模ページ
+#### pagename.scss
+```scss
+@import "/src/@scss/@foundation/foundation";
+```
+`_@variables.scss`,`_mixin.scss`,`functions.scss`をimportする
 ***
 ### 1.6 utility層
 ****
