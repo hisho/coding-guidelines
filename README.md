@@ -836,6 +836,26 @@ body {
 `_@variables.scss`,`_mixin.scss`,`functions.scss`をimportする
 ***
 ### 1.6 utility層
+* 汎用クラスの定義
+* このフォルダ中のみinmportantを使える
+#### _@modifier.scss
+このファイルの中身のみ編集する
+***
+#### _fonts.scss
+font-sizeの汎用クラスの定義
+Emmetのfont-sizeのショートハンドの`fz`で`fz-{{breakpoint}}-{{size}}`で呼び出す
+***
+#### _margin.scss
+margin関係の汎用クラスの定義
+Emmetのmarginショートハンドの`m○`で`m○-{{breakpoint}}-{{size}}`で呼び出す
+***
+#### _padding.scss
+padding関係の汎用クラスの定義
+Emmetのpaddingショートハンドの`p○`で`p○-{{breakpoint}}-{{size}}`で呼び出す
+***
+#### _text-align.scss
+text-align関係の汎用クラスの定義
+`text-{{breakposints}}-{{value}}`で呼び出す
 ****
 ### 1.6 vendor層
 ***
