@@ -858,6 +858,26 @@ text-align関係の汎用クラスの定義
 `text-{{breakposints}}-{{value}}`で呼び出す
 ****
 ### 1.6 vendor層
+* JavaScriptなどの外部ライブラリのcssを置く場所
+* cssをscssにリネームする
+* class上書き用の同名の.scssを作成する
+#### _hoge.css.scss
+`hoge.css`をリネームし`hoge.css.scss`にする。
+```scss
+/* Pluguins
+==================== */
+@import "vendor/*\.css\.scss";
+```
+`hoge.css.scss`は`common.scss`の一番上でimportされる。
+***
+#### _hoge.scss
+`hoge.css`のclassを上書きするようの`hoge.scss`を作成する。
+```scss
+/* Modules
+==================== */
+@import "vendor/!(*\.css\.scss)";
+```
+`hoge.scss`は`common.scss`のModulesでimportされる。
 ***
 ### 2. CSS命名規則 - MindBEMdingの独自拡張
 
