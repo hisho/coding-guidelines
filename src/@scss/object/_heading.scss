@@ -1,0 +1,15 @@
+%heading {
+  font-weight: 600;
+}
+
+.heading-lv1 {
+  @extend %heading;
+}
+
+.heading-lv2 {
+  @extend %heading;
+}
+
+.heading-lv3 {
+  @extend %heading;
+}
