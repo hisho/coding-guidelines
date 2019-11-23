@@ -34,9 +34,12 @@ root
       │     └── _reset.scss
       │
       ├── layout
-      │     ├── _footer.scss
-      │     ├── _header.scss
-      │     └── _sections.scss
+      │     ├── _@footer.scss
+      │     ├── _@header.scss
+      │     ├── _@sections.scss
+      │     ├── _breadcrumbs.scss
+      │     ├── _gnav.scss
+      │     └── _hamburger.scss
       │
       ├── object
       │     ├── _breadcrumbs.scss
