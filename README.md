@@ -17,6 +17,12 @@ $ npm run watch
 ****
 
 ### 0. 初期設定のTODOリスト
+1. fontの定義(@variables.scss)
+2. 色の定義(@variables.scss)
+3. breakposintsの定義(@variables.scss)
+4. base.scssの定義(base.scss)
+5. hoverの体裁の定義(mixins.scss)
+6. 共通パーツの洗い出し
 
 ### 1. ディレクトリ構造
 **CSS設計 - FLOUとSMACSSの独自拡張**
